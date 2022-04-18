@@ -18,7 +18,7 @@ async def delete_message(message: types.Message, sleep_time: int = 0):
 async def echo(message: types.Message):
     await message.delete()
     msg = await message.answer('Меню', reply_markup=nav.mainMenu)
-    asyncio.create_task(delete_message(msg, 1))
+    asyncio.create_task(delete_message(msg, 6))
 
 
 @dp.message_handler()
