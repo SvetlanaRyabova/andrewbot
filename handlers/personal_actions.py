@@ -9,6 +9,12 @@ async def echo(message: types.Message):
     await message.answer('.', reply_markup=nav.mainMenu)
 
 
+@dp.message_handler(content_types=['text'])
+def chatting(message):
+    if message.text == '.':
+        message.delete(message.chat.id, message.message_id)
+
+
 @dp.message_handler()
 async def bot_message(message: types.Message):
     if message.text == 'ДСМ':
