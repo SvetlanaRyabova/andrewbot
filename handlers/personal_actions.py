@@ -8,7 +8,7 @@ from aiogram.utils.exceptions import (MessageToEditNotFound, MessageCantBeEdited
                                       MessageToDeleteNotFound)
 
 
-async def delete_message(message: types.Message, sleep_time: int = 30):
+async def delete_message(message: types.Message, sleep_time: int = 0):
     await asyncio.sleep(sleep_time)
     with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
         await message.delete()
@@ -17,7 +17,8 @@ async def delete_message(message: types.Message, sleep_time: int = 30):
 @dp.message_handler(commands=['start'])
 async def echo(message: types.Message):
     await message.delete()
-    await message.answer('Меню', reply_markup=nav.mainMenu)
+    msg = await message.answer('Меню', reply_markup=nav.mainMenu)
+    asyncio.create_task(delete_message(msg, 10))
 
 
 @dp.message_handler()
