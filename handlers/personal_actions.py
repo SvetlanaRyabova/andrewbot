@@ -5,7 +5,7 @@ from handlers import markup as nav
 
 @dp.message_handler(commands=['start'])
 async def echo(message: types.Message):
-    await message.answer('Привет DreamTeam', reply_markup=nav.mainMenu)
+    await message.answer('', reply_markup=nav.mainMenu)
 
 
 @dp.message_handler()
