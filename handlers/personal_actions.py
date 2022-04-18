@@ -6,13 +6,13 @@ from handlers import markup as nav
 @dp.message_handler(commands=['start'])
 async def echo(message: types.Message):
     await message.delete()
-    await message.reply(reply_markup=nav.mainMenu)
+    await message.answer('Меню', reply_markup=nav.mainMenu)
 
 
-# @dp.message_handler(content_types=['text'])
-# def chatting(message):
-#     if message.text == 'Меню':
-#         message.delete(message.chat.id, message.message_id)
+@dp.message_handler(content_types=['text'])
+async def delete_mes(message):
+    if message.text == 'Меню':
+        message.delete(message.chat.id, message.message_id)
 
 
 @dp.message_handler()
