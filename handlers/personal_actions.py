@@ -9,6 +9,13 @@ async def echo(message: types.Message):
 
 
 @dp.message_handler()
+async def delete_message(message: types.Message):
+    if '/start' or '.' in message.text:
+        return
+    await message.delete()
+
+
+@dp.message_handler()
 async def bot_message(message: types.Message):
     if message.text == 'ДСМ':
         await message.answer(
