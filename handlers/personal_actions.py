@@ -1,18 +1,23 @@
 from aiogram import types
 from dispatcher import dp
 from handlers import markup as nav
+import asyncio
+from contextlib import suppress
+
+from aiogram.utils.exceptions import (MessageToEditNotFound, MessageCantBeEdited, MessageCantBeDeleted,
+                                      MessageToDeleteNotFound)
+
+
+async def delete_message(message: types.Message, sleep_time: int = 30):
+    await asyncio.sleep(sleep_time)
+    with suppress(MessageCantBeDeleted, MessageToDeleteNotFound):
+        await message.delete()
 
 
 @dp.message_handler(commands=['start'])
 async def echo(message: types.Message):
     await message.delete()
     await message.answer('Меню', reply_markup=nav.mainMenu)
-
-
-@dp.message_handler(content_types=['text'])
-async def delete_mes(message):
-    if message.text == 'Меню':
-        message.delete(message.chat.id, message.message_id)
 
 
 @dp.message_handler()
