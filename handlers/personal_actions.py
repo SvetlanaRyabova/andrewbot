@@ -23,6 +23,7 @@ async def echo(message: types.Message):
 
 @dp.message_handler()
 async def bot_message(message: types.Message):
+    message.text.upper()
     if message.text == 'ДСМ':
         await message.answer(
             'https://teams.microsoft.com/l/meetup-join/19%3ameeting_MzUyYjdlYjgtZDhhZi00OWVkLWJhYmUtNTA3OGJlY2UwMWM3'
@@ -31,5 +32,8 @@ async def bot_message(message: types.Message):
     elif message.text == 'Ретро':
         await message.answer('https://miro.com/app/board/o9J_kpAq060=/?moveToWidget=3074457360941169165&cot=14',
                              reply_markup=nav.mainMenuRemove)
-    elif message.text == 'PI Plan':
+    elif message.text == 'Планирование':
         await message.answer('https://miro.com/app/board/uXjVOWld3wE=/', reply_markup=nav.mainMenuRemove)
+    elif message.text == 'Метрики':
+        await message.answer('https://docs.google.com/spreadsheets/d/14A2JXyM5KO11igAS-ynAbR6FOJv3ywP88P7KvR232bY/edit?usp=sharing',
+                             reply_markup=nav.mainMenuRemove)
